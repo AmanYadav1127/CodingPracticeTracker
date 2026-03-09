@@ -1,6 +1,30 @@
 package com.tracker.project.Model;
 
-public class Problem {
-    private Long id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
+@Entity
+// @Entity → tells Spring it's a table
+//@Id → primary key
+//@GeneratedValue → auto increment id
+@Data
+public class Problem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String platform;
+    private String difficulty;
+    private String topic;
+    private String dateSolved;
+    private String notes;
+
+//    public Object getPlatform() {
+//    }
+//
+//    public void setPlatform(Object platform) {
+//    }
 }
