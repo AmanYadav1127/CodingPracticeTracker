@@ -1,0 +1,273 @@
+/* This forces the very base of the page to be centered */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Horizontal center */
+  align-items: flex-start; /* Start from top */
+  background-color: #0f172a;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  /* This is the magic line that keeps it centered if flex fails */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* 1. Global Reset & Centering Logic */
+:root {
+  --primary: #6366f1;       /* Indigo */
+  --primary-hover: #4f46e5;
+  --bg-color: #0f172a;      /* Dark Navy */
+  --card-bg: #1e293b;       /* Lighter Navy */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+/* 2. Layout Centering */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Start from top but centered */
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* 3. Header Styling */
+header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+header h1 span {
+  color: var(--primary);
+}
+
+header p {
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* 4. Glassmorphism Form Card */
+.tracker-form {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.tracker-form h3 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  color: var(--primary);
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+input, select, textarea {
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 15px;
+  resize: vertical;
+}
+
+/* 5. Buttons */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.save-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 2;
+  transition: background 0.2s;
+}
+
+.save-btn:hover {
+  background: var(--primary-hover);
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.cancel-btn:hover {
+  background: rgba(255,255,255,0.05);
+  color: white;
+}
+
+/* 6. Modern Table Styling */
+.table-section {
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background: #334155;
+  padding: 16px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+td {
+  padding: 18px 16px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.prob-title {
+  font-weight: 600;
+  color: var(--text-main);
+  display: block;
+}
+
+.prob-notes {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tags & Badges */
+.topic-tag {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.diff-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.diff-tag.Easy { color: var(--success); }
+.diff-tag.Medium { color: var(--warning); }
+.diff-tag.Hard { color: var(--danger); }
+
+/* Action Buttons */
+.actions-cell {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn, .del-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-btn { color: var(--primary); border-color: var(--primary); }
+.edit-btn:hover { background: var(--primary); color: white; }
+
+.del-btn { color: var(--danger); border-color: var(--danger); }
+.del-btn:hover { background: var(--danger); color: white; }
+
+/* 7. Responsiveness */
+@media (max-width: 768px) {
+  .input-group {
+    grid-template-columns: 1fr 1fr;
+  }
+}
