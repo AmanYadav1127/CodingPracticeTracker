@@ -73,57 +73,70 @@ public class ProblemService {
 
     public Map<String, Object> getStreak() {
 
-        List<Problem> problems = problemRepository.findAllByOrderByDateSolvedAsc();
+        List<Problem> problems = problemRepository.findAll();
 
-        Set<LocalDate> uniqueDays = new HashSet<>();
+        Set<LocalDate> solvedDays = new HashSet<>();
 
         for (Problem p : problems) {
-            uniqueDays.add(LocalDate.parse(p.getDateSolved()));
-        }
 
-        List<LocalDate> days = new ArrayList<>(uniqueDays);
-        Collections.sort(days);
+            String dateStr = p.getDateSolved();
+
+            if (dateStr != null && !dateStr.isEmpty()) {
+
+                LocalDate date = LocalDate.parse(dateStr.substring(0, 10));
+
+                solvedDays.add(date);
+            }
+        }
 
         int currentStreak = 0;
         int longestStreak = 0;
-        int temp = 1;
+
+        LocalDate today = LocalDate.now();
+
+        // CURRENT STREAK
+
+        if (solvedDays.contains(today)) {
+
+            while (solvedDays.contains(today.minusDays(currentStreak))) {
+                currentStreak++;
+            }
+
+        } else if (solvedDays.contains(today.minusDays(1))) {
+
+            currentStreak = 1;
+
+        }
+
+        // LONGEST STREAK
+
+        List<LocalDate> days = new ArrayList<>(solvedDays);
+        Collections.sort(days);
+
+        int count = 1;
 
         for (int i = 1; i < days.size(); i++) {
 
             if (days.get(i).equals(days.get(i - 1).plusDays(1))) {
-                temp++;
+
+                count++;
+
             } else {
-                longestStreak = Math.max(longestStreak, temp);
-                temp = 1;
+
+                longestStreak = Math.max(longestStreak, count);
+                count = 1;
+
             }
         }
 
-        longestStreak = Math.max(longestStreak, temp);
-
-        LocalDate today = LocalDate.now();
-        LocalDate check = today;
-
-        while (uniqueDays.contains(check)) {
-            currentStreak++;
-            check = check.minusDays(1);
-        }
+        longestStreak = Math.max(longestStreak, count);
 
         Map<String, Object> result = new HashMap<>();
+
         result.put("currentStreak", currentStreak);
         result.put("longestStreak", longestStreak);
 
         return result;
-    }
-
-    public Map<String, Long> getActivity() {
-
-        List<Problem> problems = problemRepository.findAll();
-
-        return problems.stream()
-                .collect(Collectors.groupingBy(
-                        Problem::getDateSolved,
-                        Collectors.counting()
-                ));
     }
 
 }

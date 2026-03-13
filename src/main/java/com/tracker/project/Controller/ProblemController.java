@@ -71,8 +71,9 @@ public class ProblemController {
         return problemService.getStreak();
     }
 
-    @GetMapping("/activity")
-    public Map<String, Long> getActivity() {
-        return problemService.getActivity();
-    }
+//    @GetMapping("/activity")
+//    public Map<String, Long> getActivity() {
+//        return problemService.getActivity();
+//    }
+
 }
