@@ -21,10 +21,7 @@ public class Problem {
     private String topic;
     private String dateSolved;
     private String notes;
-
-//    public Object getPlatform() {
-//    }
-//
-//    public void setPlatform(Object platform) {
-//    }
+    private String problemUrl;
+    private boolean important;
+    private boolean revision;
 }
