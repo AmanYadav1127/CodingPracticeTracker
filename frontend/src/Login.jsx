@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
-const BASE = "http://localhost:8080/api/auth";
+const BASE = `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/auth`;
 
 export default function Login() {
   const navigate = useNavigate();

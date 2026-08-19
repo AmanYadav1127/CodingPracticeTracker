@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = "http://localhost:8080/api/problems";
+const BASE = `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/problems`;
 
 const getUser = () => localStorage.getItem("user") || "";
 
