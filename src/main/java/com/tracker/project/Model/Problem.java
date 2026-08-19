@@ -24,4 +24,5 @@ public class Problem {
     private String problemUrl;
     private boolean important;
     private boolean revision;
+    private String username;
 }
